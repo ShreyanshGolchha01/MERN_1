@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaScroll } from "react-icons/fa";
+import {useNavigate} from 'react-router-dom'
 const CreatePost = () => {
+  const navigate = useNavigate()
   const [imagePreview, setImagePreview] = useState('')
 
   useEffect(() => {
@@ -37,12 +39,12 @@ const CreatePost = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('Post created successfully:', response.data);
       event.target.reset();
       if (imagePreview) {
         URL.revokeObjectURL(imagePreview)
       }
       setImagePreview('')
+      navigate('/feed');
     } catch (error) {
       console.error('Error creating post:', error);
     }
@@ -50,7 +52,7 @@ const CreatePost = () => {
   return (
     <section className="create-post-section">
       <Link to="/feed" className="home-icon">
-        <FaHome />
+        <FaScroll />
       </Link>
       <h1>Create Post</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
