@@ -1,4 +1,4 @@
-# MERN_1
+# MERN PRACTICE
 
 A MERN-based image posting app where users can create posts with an image + caption and view them in a feed.
 
